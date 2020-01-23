@@ -7,8 +7,8 @@ function App() {
   const number = useSelector(state => state.number);
   const dispatch = useDispatch();
 
-  let a = 5;
-  let b = 2;
+  const a = 5;
+  const b = 2;
 
   return (
     <div className="App">

@@ -5,10 +5,17 @@ import * as serviceWorker from "./serviceWorker";
 
 import allReducers from "./reducers";
 
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
+import createSagaMiddleware from "redux-saga";
+import { watchAdd, watchSub } from "./sagas/saga";
 
-const store = createStore(allReducers);
+const sagaMiddleware = createSagaMiddleware();
+
+const store = createStore(allReducers, applyMiddleware(sagaMiddleware));
+
+sagaMiddleware.run(watchAdd);
+sagaMiddleware.run(watchSub);
 
 ReactDOM.render(
   <Provider store={store}>
